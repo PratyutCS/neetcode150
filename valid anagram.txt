@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.length()== t.length()){
+            unordered_map<char,int>hash1;
+            unordered_map<char,int>hash2;
+            for(char q:s){
+                hash1[q]++;
+            }
+            for(char q:t){
+                hash2[q]++;
+            }
+            for (auto i : hash1){
+                if(hash2[i.first] != i.second){
+                    cout<<"false"<<endl;
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+};
