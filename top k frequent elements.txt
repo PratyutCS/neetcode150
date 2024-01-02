@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        vector<int> l;
+        unordered_map<int,int> hash;
+        for(int q:nums){
+            hash[q]++;
+        }
+        vector<pair<int,int>> p (hash.begin(),hash.end());
+        auto sc1 = [](pair<int,int> v1, pair<int,int> v2){return v1.second > v2.second;};
+        sort(p.begin(),p.end(),sc1);
+        for(int i=0;i<k;i++){
+            l.push_back(p[i].first);
+        }
+        return l;
+    }
+};
