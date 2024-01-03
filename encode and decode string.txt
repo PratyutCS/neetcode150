@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string encode(vector<string>& strs) {
+        string del=":;/";
+        string s = "";
+        for(auto x:strs){
+            s=s+x+del;
+        }
+        return s;
+    }
+
+    vector<string> decode(string s) {
+        string del = ":;/";
+        vector<string> strs;
+        int prev=0;
+        for(int i=0;i<s.length();i++){
+            if(s.substr(i,3) == ":;/"){
+                strs.push_back(s.substr(prev,i-prev));
+                prev = i+3;
+            }
+        }
+        return strs;
+    }
+};
