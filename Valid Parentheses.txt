@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        if(s.length()==1){
+            return false;
+        }
+        stack<char> sta;
+        for(char i:s){
+            if(sta.empty()){
+                if(i==40 || i==123 || i==91){
+                    sta.push(i);
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                if(i==40 || i==123 || i==91){
+                    sta.push(i);
+                }
+                else{
+                    char q = sta.top();
+                    if((q==40 && i!=41) || (q==123 && i!=125) || (q==91 && i!=93)){
+                        return false;
+                    }
+                    else{
+                        sta.pop();
+                    }
+                }
+            }
+        }
+        if(sta.empty()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
