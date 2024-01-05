@@ -1,0 +1,47 @@
+class MinStack {
+public:
+    
+    typedef struct node{
+        int v;
+        int min;
+        node* next;
+    }node;
+
+    MinStack() :topa(nullptr){
+        
+    }
+    
+    void push(int val) {
+        node* n = new node;
+        n->v = val;
+        n->next=nullptr;
+        if(topa == nullptr){
+            n->min = val;
+        }
+        else{
+            if(val < topa->min){
+                n->min = val;
+                n->next = topa;
+            }
+            else{
+                n->min = topa->min;
+                n->next = topa;
+            }
+        }
+        topa = n;
+    }
+    
+    void pop() {
+        topa = topa->next;
+    }
+    
+    int top() {
+        return topa->v;
+    }
+    
+    int getMin() {
+        return topa->min;    
+    }
+    private:
+    node* topa;
+};
